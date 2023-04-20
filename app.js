@@ -1,16 +1,16 @@
-//PRE ENTREGA 2
+//PRE ENTREGA 3
 
-//Estructura HTML para interactuar (no incluir segun la profesora)
-//Variables JS
-//Funciones
-//Objetos
-//Arrays
-//Metodos de busqueda y filtrado (filter etc)
+//pre entrega 2
+//Storage y JSON
+//Modificacion del DOM 
 
 //clase / objetos
+
+let code = 0
+
 class Trabajador {
-    constructor(codigo,nombre,fechnac,sueldo,cargo){
-        this.codigo = codigo;
+    constructor(nombre,fechnac,sueldo,cargo){
+        this.codigo = code++;
         this.nombre = nombre;
         this.fechnac = fechnac;
         this.sueldo = sueldo;
@@ -26,129 +26,204 @@ class Trabajador {
     }
 }
 
-//creando Trabajadores normalmente (solo estan de ejemplo)
-const Trabajador1 = new Trabajador("1","Luis","10-10-1960","3000","Jefe")
-const Trabajador2 = new Trabajador("2","Alex","01-01-1980","2000","Administrativo")
-const Trabajador3 = new Trabajador("3","Ian","19-12-2001","1000","Tecnico")
-
-//arrays (lo que utilizaremos)
+//arrays
 const Trabajadores = []
 
-Trabajadores.push(new Trabajador("1","Luis","10-10-1960","3000","Jefe"))
-Trabajadores.push(new Trabajador("2","Alex","01-01-1980","2000","Administrativo"))
-Trabajadores.push(new Trabajador("3","Ian","19-12-2001","1000","Tecnico"))
+Trabajadores.push(new Trabajador("Luis","10-10-1960","3000","Jefe"))
+Trabajadores.push(new Trabajador("Alex","01-01-1980","2000","Administrativo"))
+Trabajadores.push(new Trabajador("Ian","19-12-2001","1000","Tecnico"))
 
 
 //variables HTML
-let code = document.getElementById("c")
-let nomb = document.getElementById("n")
-let fn = document.getElementById("fn")
-let suel = document.getElementById("s")
-let car = document.getElementById("ca")
 
-let opcion = 1
+let ag= document.getElementById("agregar")
+let bu= document.getElementById("buscar")
+let el= document.getElementById("eliminar")
 
-while (opcion == 1) {
-    //variables
-    opcion = prompt("Buscar trabajador \n 1.-continuar \n 0.- enter o cancelar para salir")
+let lt= document.getElementById("listT")
+let lj= document.getElementById("listJ")
+let le= document.getElementById("listE")
 
-    if (opcion == 1) {
+//eventos
 
-        let nom = prompt("Ingrese nombre a buscar")
-    
-        if (nom === null || nom === "") {
-            alert("Debe ingresar algun nombre")
-        }
+ag.addEventListener("click", agregarT)
+bu.addEventListener("click", buscarT)
+el.addEventListener("click", eliminarT)
+lt.addEventListener("click", listarTodos)
+lj.addEventListener("click", listarJefes)
+le.addEventListener("click", listarEmp)
 
-        const tra = buscarTrabajador(nom)
 
-        if (tra) {
-            //La idea es que muestre el trabajador en las etiquetas p de HTML si pasa por aqui
-            //pero se muestra solo al cerrar el ciclo
-            code.innerText= "Codigo: "+ tra.codigo
-            nomb.innerText= "Nombre: "+ tra.nombre
-            fn.innerText= "Fecha de nacimiento: "+ tra.fechnac
-            suel.innerText= "Sueldo: "+ tra.sueldo
-            car.innerText= "Cargo: "+ tra.cargo
-    
-            if (tra.esJefe()) {
-                alert("El Trabajador es Jefe y gana $"+tra.sueldo)
-            }else{
-                alert("El Trabajador no es Jefe")
-            }
-            alert("Su codigo es: "+ tra.codigo)
-        }else{
-            alert("No existe")
-        }
+function agregarT(e) {
+    e.preventDefault();
+    let nomb = document.getElementById("n").value
+    let fn = Date(document.getElementById("fn").value)
+    let suel = document.getElementById("s").value
+    let car = document.getElementById("ca").value
+    Trabajadores.push(new Trabajador(nomb,fn,suel,car))
+    alert("Trabajador: "+nomb+" agregado")
+    actualizarStorage()
+}
 
-        //manejo de arrays
-        alert("Agregaremos un nuevo trabajador")
+function buscarT(e) {
+    e.preventDefault();
+    let nombb = document.getElementById("nb").value
+    const trab = buscarTrabajador(nombb)
+    if (trab) {
+        var padre = document.getElementById("buscarTrab")
+        var hijo1 = document.createElement("p")
+        var hijo2 = document.createElement("p")
+        var hijo3 = document.createElement("p")
+        var hijo4 = document.createElement("p")
 
-        let opcion2 = 1
+        hijo1.textContent = "Codigo: "+trab.codigo
+        hijo2.textContent = "Fecha Nacimiento: "+trab.fechnac
+        hijo3.textContent = "Sueldo: "+trab.sueldo
+        hijo4.textContent = "Es Jefe: "+trab.esJefe()
 
-        while (opcion2 == 1) {
+        padre.appendChild(hijo1)
+        padre.appendChild(hijo2)
+        padre.appendChild(hijo3)
+        padre.appendChild(hijo4)
 
-            opcion2 = prompt("Agregar trabajador \n 1.-Si \n 0.- enter o cancelar para salir")
-
-            if (opcion2 == 1) {
-
-                let codt = Number(prompt("Ingrese codigo"))
-                let nomt = prompt("Ingrese nombre")
-                let fnt = prompt("Ingrese fecha de nacimiento")
-                let sut = Number(prompt("Ingrese sueldo"))
-                let cat = prompt("Ingrese cargo")
-        
-                Trabajadores.push(new Trabajador(codt,nomt,fnt,sut,cat))
-
-                alert("trabajador: "+ buscarTrabajador(nomt).nombre+" agregado")
-            }else{
-                break
-            }
-        }
-
-        alert("Eliminaremos un trabajador")
-
-        let opcion3 = 1
-
-        while (opcion3 == 1) {
-
-            opcion3 = prompt("Eliminar trabajador \n 1.-Si \n 0.- enter o cancelar para salir")
-
-            if (opcion3 == 1) {
-
-                let et = prompt("Ingrese nombre de trabajador a eliminar")
-                let buscado = buscarTrabajador(et)
-
-                if (buscado) {
-
-                    Trabajadores.splice(buscado,1)
-                    alert("Eliminado")
-                    console.log(Trabajadores)
-
-                }else{
-                    alert("No existe")
-                }
-            } else {
-                break
-            }  
-        }
+        alert(nombb+" Encontrado")
     } else {
-        break
+        alert("No se encuentra "+nombb)
     }
 }
-    
 
+function eliminarT(e) {
+    e.preventDefault();
+    let nombe = document.getElementById("ne").value
+    const trab = buscarTrabajador(nombe)
+    var indice = Trabajadores.indexOf(trab);
+    if (trab) {
+        Trabajadores.splice(indice,1)
+        alert("Eliminado")
+        actualizarStorage()
+    } else {
+        alert("No se encuentra "+ nombe)
+    }
+}
+
+ function listarTodos(e) {
+     e.preventDefault();
+
+     for (const data of listarT()) {
+
+        var padre = document.getElementById("listas")
+        var hijo0 = document.createElement("p")
+        var hijo1 = document.createElement("p")
+        var hijo2 = document.createElement("p")
+        var hijo3 = document.createElement("p")
+        var hijo4 = document.createElement("p")
+        var hijo5 = document.createElement("p")
+
+        hijo0.textContent = "Nombre: "+data.nombre
+        hijo1.textContent = "Codigo: "+data.codigo
+        hijo2.textContent = "Fecha Nacimiento: "+data.fechnac
+        hijo3.textContent = "Sueldo: "+data.sueldo
+        hijo4.textContent = "Es Jefe: "+data.cargo
+        hijo5.textContent = "Es Jefe: "+data.esJefe()
+
+        padre.appendChild(hijo0)
+        padre.appendChild(hijo1)
+        padre.appendChild(hijo2)
+        padre.appendChild(hijo3)
+        padre.appendChild(hijo4)
+        padre.appendChild(hijo5)
+     }
+ }
+
+ function listarJefes(e) {
+     e.preventDefault();
+
+     for (const data of filtrarJefes()) {
+
+        var padre = document.getElementById("listas")
+        var hijo0 = document.createElement("p")
+        var hijo1 = document.createElement("p")
+        var hijo2 = document.createElement("p")
+        var hijo3 = document.createElement("p")
+        var hijo4 = document.createElement("p")
+        var hijo5 = document.createElement("p")
+
+        hijo0.textContent = "Nombre: "+data.nombre
+        hijo1.textContent = "Codigo: "+data.codigo
+        hijo2.textContent = "Fecha Nacimiento: "+data.fechnac
+        hijo3.textContent = "Sueldo: "+data.sueldo
+        hijo4.textContent = "Es Jefe: "+data.cargo
+        hijo5.textContent = "Es Jefe: "+data.esJefe()
+
+        padre.appendChild(hijo0)
+        padre.appendChild(hijo1)
+        padre.appendChild(hijo2)
+        padre.appendChild(hijo3)
+        padre.appendChild(hijo4)
+        padre.appendChild(hijo5)
+     }
+ }
+
+ function listarEmp(e) {
+     e.preventDefault();
+
+     for (const data of filtrarNoJefes()) {
+
+        var padre = document.getElementById("listas")
+        var hijo0 = document.createElement("p")
+        var hijo1 = document.createElement("p")
+        var hijo2 = document.createElement("p")
+        var hijo3 = document.createElement("p")
+        var hijo4 = document.createElement("p")
+        var hijo5 = document.createElement("p")
+
+        hijo0.textContent = "Nombre: "+data.nombre
+        hijo1.textContent = "Codigo: "+data.codigo
+        hijo2.textContent = "Fecha Nacimiento: "+data.fechnac
+        hijo3.textContent = "Sueldo: "+data.sueldo
+        hijo4.textContent = "Es Jefe: "+data.cargo
+        hijo5.textContent = "Es Jefe: "+data.esJefe()
+
+        padre.appendChild(hijo0)
+        padre.appendChild(hijo1)
+        padre.appendChild(hijo2)
+        padre.appendChild(hijo3)
+        padre.appendChild(hijo4)
+        padre.appendChild(hijo5)
+     }
+ }
+ 
 //funciones
 //busqueda
 function buscarTrabajador(nombreT) {
     return Trabajadores.find(dato => dato.nombre === nombreT)
 }
 
-//console.log(buscarTrabajador("Luis"))
-
 //filtrado los que no son jefes
 function filtrarNoJefes() {
     return Trabajadores.filter(dato => dato.cargo != "Jefe")
 }
 
-console.log(filtrarNoJefes())
+function filtrarJefes() {
+    return Trabajadores.filter(dato => dato.cargo == "Jefe")
+}
+
+function listarT() {
+    return Trabajadores
+}
+
+//STORAGE/JSON
+//const storageT = localStorage.setItem("trabajadores",JSON.stringify(Trabajadores))
+
+function actualizarStorage() {
+    localStorage.clear()
+    const datosStorage = (clave,valor) => {localStorage.setItem(clave, valor)}
+    for (const info of Trabajadores) {
+        datosStorage(info.nombre,JSON.stringify(info))
+    }
+}
+
+
+//console.log(localStorage.getItem(1))
+
+//console.log(listarT())

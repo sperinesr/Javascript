@@ -6,13 +6,43 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Administracion de Trabajadores</h1>
+    <h2>Agregar</h2>
     <form action="">
-        <p id="c">Codigo</p>
-        <p id="n">Nombre</p>
-        <p id="fn">Fecha Nacimiento</p>
-        <p id="s">Sueldo</p>
-        <p id="ca">Cargo</p>
+        <p>Nombre:</p>
+        <input type="text" name="nombre" id="n" required="true">
+        <p>Fecha Nacimiento:</p>
+        <input type="date" name="fecha nacimiento" id="fn" required="true">
+        <p>Sueldo:</p>
+        <input type="number" name="sueldo" id="s" required="true">
+        <p>Cargo:</p>
+        <input type="text" name="cargo" id="ca">
+        <p></p>
+        <input type="submit" value="Agregar" id="agregar">
+        <input type="reset" value="Limpiar">
     </form>
+    <h2>Buscar</h2>
+    <form action="" id="buscarTrab">
+        <p>Nombre:</p>
+        <input type="text" name="nombre" id="nb" required="true">
+        <input type="submit" value="Buscar" id="buscar">
+        <input type="reset" value="Limpiar">
+    </form>
+    <h2>Eliminar</h2>
+    <form action="">
+        <p>Nombre:</p>
+        <input type="text" name="nombre" id="ne" required="true">
+        <p></p>
+        <input type="button" value="Eliminar" id="eliminar">
+        <input type="reset" value="Limpiar">
+    </form>
+    <p></p>
+    <form action="" id="listas">
+        <input type="submit" value="Listar todos" id="listT">
+        <input type="submit" value="Listar Jefes" id="listJ">
+        <input type="submit" value="Listar empleados" id="listE">
+    </form>
+    <p id="lista"></p>
     
     <script src="./app.js"></script>
 </body>
