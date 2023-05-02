@@ -1,0 +1,155 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    display: grid;
+    grid-template-areas: 3,1fr;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+h1{
+    grid-column-start: 1;
+    grid-column-end: 4;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+
+.ag{
+    text-align: center;
+    grid-column: 1;
+    grid-row: 2;
+    padding-bottom: 20px;
+}
+
+.agregar{
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: black solid 1px;
+    width: 300px;
+    height: 200px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.agregar input{
+    margin-bottom: 10px;
+}
+
+.agregar select{
+    margin-bottom: 10px;
+    width: max-content;
+}
+.bu{
+    text-align: center;
+    grid-column: 2;
+    grid-row: 2; 
+    padding-bottom: 20px;
+}
+.buscar{
+    grid-column: 2;
+    grid-row: 3;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: black solid 1px;
+    width: 300px;
+    height: 200px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.buscar input{
+    margin-bottom: 10px;
+}
+
+.buscar div{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+
+.el{
+    text-align: center;
+    grid-column: 3;
+    grid-row: 2;
+    padding-bottom: 20px;
+}
+.eliminar{
+    grid-column: 3;
+    grid-row: 3;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: black solid 1px;
+    width: 300px;
+    height: 200px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.eliminar input {
+    margin-bottom: 10px;
+}
+
+.li{
+    text-align: center;
+    grid-column: 2;
+    grid-row: 4;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.listar{
+    grid-column: 2;
+    grid-row: 5;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: black solid 1px;
+    width: max-content;
+    height: max-content;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.listar input{
+    border-radius: 15px;
+    margin: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: orange;
+}
+
+#lista{
+    border: black solid 1px;
+    border-radius: 10px;
+}
+
+#titleapi{
+    grid-column: 1;
+    grid-row: 4;
+    font-size: 25px;
+    font-weight: bold;
+}
+#apichuck{
+    grid-column: 1;
+    grid-row: 5;
+    font-size: 30px;
+    color: orange;
+    background-color: black;
+    width: 250px;
+    border: black solid 1px;
+    border-radius: 15px;
+    text-align: center;
+    align-self: flex-start;
+}

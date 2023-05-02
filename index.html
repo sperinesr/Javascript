@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <h1>Administracion de Trabajadores</h1>
-    <h2>Agregar</h2>
-    <form action="">
+    <h2 class="ag">Agregar</h2>
+    <form action="" id="agregarTrab" class="agregar">
         <p>Nombre:</p>
         <input type="text" name="nombre" id="n" required="true">
         <p>Fecha Nacimiento:</p>
@@ -16,34 +17,46 @@
         <p>Sueldo:</p>
         <input type="number" name="sueldo" id="s" required="true">
         <p>Cargo:</p>
-        <input type="text" name="cargo" id="ca">
+        <select name="cargo" id="ca">
+            <option value="Jefe">Jefe</option>
+            <option value="administrativo">Administrativo</option>
+            <option value="tecnico">Tecnico</option>
+        </select>
         <p></p>
         <input type="submit" value="Agregar" id="agregar">
-        <input type="reset" value="Limpiar">
+        <input type="reset" value="Limpiar" id="limpiarA">
     </form>
-    <h2>Buscar</h2>
-    <form action="" id="buscarTrab">
-        <p>Nombre:</p>
-        <input type="text" name="nombre" id="nb" required="true">
+    <p id="titleapi">¿Sabias que? (API)</p>
+    <P id="apichuck"></P>
+    <h2 class="bu">Buscar</h2>
+    <form action="" id="buscarTrab" class="buscar">
+        <p>Nombre a buscar:</p>
+        <input type="text" name="nombre" value="" id="nb" required="true">
+        <p></p>
         <input type="submit" value="Buscar" id="buscar">
-        <input type="reset" value="Limpiar">
+        <input type="reset" value="Limpiar" id="limpiarB">
+        <div id="buscarTrabResultado"></div>
     </form>
-    <h2>Eliminar</h2>
-    <form action="">
-        <p>Nombre:</p>
+    <h2 class="el">Eliminar</h2>
+    <form action="" class="eliminar">
+        <p>Nombre a eliminar:</p>
         <input type="text" name="nombre" id="ne" required="true">
         <p></p>
         <input type="button" value="Eliminar" id="eliminar">
         <input type="reset" value="Limpiar">
     </form>
     <p></p>
-    <form action="" id="listas">
+    <h2 class="li">Listar</h2>
+    <form action="" id="listas" class="listar">
         <input type="submit" value="Listar todos" id="listT">
         <input type="submit" value="Listar Jefes" id="listJ">
         <input type="submit" value="Listar empleados" id="listE">
+        <input type="reset" value="Limpiar" id="limpiarL">
+        <div id="lista"></div>
     </form>
     <p id="lista"></p>
     
     <script src="./app.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
